@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>CORE.Connection</id>
+    <version>1.0.0</version>
+    <authors>CORE.Connection</authors>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework="net6.0">
+        <dependency id="MySql.Data" version="8.0.25" exclude="Build,Analyzers" />
+        <dependency id="System.Data.SqlClient" version="4.8.2" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="G:\EjerciciosMTWDM2020\CORE.Connection\CORE.Connection\bin\Debug\net6.0\CORE.Connection.dll" target="lib\net6.0\CORE.Connection.dll" />
+  </files>
+</package>
