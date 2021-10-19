@@ -9,3 +9,15 @@ G:\EjerciciosMTWDM2020\CORE.Connection\CORE.Connection\obj\Debug\net6.0\CORE.Con
 G:\EjerciciosMTWDM2020\CORE.Connection\CORE.Connection\obj\Debug\net6.0\CORE.Connection.dll
 G:\EjerciciosMTWDM2020\CORE.Connection\CORE.Connection\obj\Debug\net6.0\ref\CORE.Connection.dll
 G:\EjerciciosMTWDM2020\CORE.Connection\CORE.Connection\obj\Debug\net6.0\CORE.Connection.pdb
+G:\EjerciciosMTWDM2020\CORE.ConnectionGit\CORE.Connection\bin\Debug\net6.0\CORE.Connection.deps.json
+G:\EjerciciosMTWDM2020\CORE.ConnectionGit\CORE.Connection\bin\Debug\net6.0\CORE.Connection.dll
+G:\EjerciciosMTWDM2020\CORE.ConnectionGit\CORE.Connection\bin\Debug\net6.0\ref\CORE.Connection.dll
+G:\EjerciciosMTWDM2020\CORE.ConnectionGit\CORE.Connection\bin\Debug\net6.0\CORE.Connection.pdb
+G:\EjerciciosMTWDM2020\CORE.ConnectionGit\CORE.Connection\obj\Debug\net6.0\CORE.Connection.csproj.AssemblyReference.cache
+G:\EjerciciosMTWDM2020\CORE.ConnectionGit\CORE.Connection\obj\Debug\net6.0\CORE.Connection.GeneratedMSBuildEditorConfig.editorconfig
+G:\EjerciciosMTWDM2020\CORE.ConnectionGit\CORE.Connection\obj\Debug\net6.0\CORE.Connection.AssemblyInfoInputs.cache
+G:\EjerciciosMTWDM2020\CORE.ConnectionGit\CORE.Connection\obj\Debug\net6.0\CORE.Connection.AssemblyInfo.cs
+G:\EjerciciosMTWDM2020\CORE.ConnectionGit\CORE.Connection\obj\Debug\net6.0\CORE.Connection.csproj.CoreCompileInputs.cache
+G:\EjerciciosMTWDM2020\CORE.ConnectionGit\CORE.Connection\obj\Debug\net6.0\CORE.Connection.dll
+G:\EjerciciosMTWDM2020\CORE.ConnectionGit\CORE.Connection\obj\Debug\net6.0\ref\CORE.Connection.dll
+G:\EjerciciosMTWDM2020\CORE.ConnectionGit\CORE.Connection\obj\Debug\net6.0\CORE.Connection.pdb

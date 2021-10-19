@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "sfredD7iBlnF+fSZF/AzcYGqfMQAnH5wkgp63HR0YSq+/ZQtlrselCzZ7LzGZ9mUsiF8sL8qJhIx6m0/ayTkEQ==",
+  "dgSpecHash": "LlwR99ropag8eQdaxmDojSp9lb8rCykfxfRorSb35dAE5XsGUR4qYj9Krnu2Cl+IoxbSecVtU29TkVECpzIpjA==",
   "success": true,
-  "projectFilePath": "G:\\EjerciciosMTWDM2020\\CORE.Connection\\CORE.Connection\\CORE.Connection.csproj",
+  "projectFilePath": "G:\\EjerciciosMTWDM2020\\CORE.ConnectionGit\\CORE.Connection\\CORE.Connection.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ProBook 450 HP\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\ProBook 450 HP\\.nuget\\packages\\google.protobuf\\3.14.0\\google.protobuf.3.14.0.nupkg.sha512",

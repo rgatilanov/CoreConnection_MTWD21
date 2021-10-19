@@ -10,7 +10,7 @@ namespace CORE.Connection.Tools
     {
         internal static string Encrypt(string clearText)
         {
-            string EncryptionKey = "MtWDMC0v1d2021";
+            string EncryptionKey = Environment.GetEnvironmentVariable("PrivateKeyMTWDM", EnvironmentVariableTarget.User);
             byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
             using (Aes encryptor = Aes.Create())
             {
@@ -32,7 +32,7 @@ namespace CORE.Connection.Tools
         }
         internal static string Decrypt(string cipherText)
         {
-            string EncryptionKey = "MtWDMC0v1d2021";
+            string EncryptionKey = Environment.GetEnvironmentVariable("PrivateKeyMTWDM", EnvironmentVariableTarget.User);
             byte[] cipherBytes = Convert.FromBase64String(cipherText);
             using (Aes encryptor = Aes.Create())
             {

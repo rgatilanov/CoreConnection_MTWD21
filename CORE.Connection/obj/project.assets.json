@@ -1122,11 +1122,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\EjerciciosMTWDM2020\\CORE.Connection\\CORE.Connection\\CORE.Connection.csproj",
+      "projectUniqueName": "G:\\EjerciciosMTWDM2020\\CORE.ConnectionGit\\CORE.Connection\\CORE.Connection.csproj",
       "projectName": "CORE.Connection",
-      "projectPath": "G:\\EjerciciosMTWDM2020\\CORE.Connection\\CORE.Connection\\CORE.Connection.csproj",
+      "projectPath": "G:\\EjerciciosMTWDM2020\\CORE.ConnectionGit\\CORE.Connection\\CORE.Connection.csproj",
       "packagesPath": "C:\\Users\\ProBook 450 HP\\.nuget\\packages\\",
-      "outputPath": "G:\\EjerciciosMTWDM2020\\CORE.Connection\\CORE.Connection\\obj\\",
+      "outputPath": "G:\\EjerciciosMTWDM2020\\CORE.ConnectionGit\\CORE.Connection\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
@@ -1142,6 +1142,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "G:\\EjerciciosMTWDM2020\\Mis NuGet": {},
         "G:\\Mis paquetes Nuget": {},
         "https://api.nuget.org/v3/index.json": {}
       },
@@ -1185,7 +1186,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-preview.5.21302.13\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-rc.2.21505.57\\RuntimeIdentifierGraph.json"
       }
     }
   }
