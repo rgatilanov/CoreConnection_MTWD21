@@ -1,4 +1,5 @@
 ﻿using CORE.Connection.Interfaces;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,11 +17,13 @@ namespace CORE.Connection.Connections
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private SqlConnection _clsSqlConnection = null;
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private SqlCommand _clsSqlCommand = null;
 
         bool _blnConectado = false;
         bool _blnPreparado = false;
-
+        string _nombreProcedimiento = string.Empty;
+        List<DynamicParameters> _dynParameters;
+        CommandType _commandType;
+        int _timeOut = 12000;
 
         private SqlServer()
         {
@@ -40,6 +43,10 @@ namespace CORE.Connection.Connections
                 modSql._clsSqlConnection.Open();
                 modSql._blnConectado = true;
             }
+            catch (SqlException sqlEx)
+            {
+                throw sqlEx;
+            }
             catch (Exception ex)
             {
                 throw ex;
@@ -51,28 +58,13 @@ namespace CORE.Connection.Connections
 
         #region Métodos públicos
 
-        public void PrepararProcedimiento(string strNombreProcedimiento, List<Tuple<string, object, int>> tplParametros, CommandType enuTipoComando = CommandType.StoredProcedure)
+        public void PrepararProcedimiento(string nombreProcedimiento, List<DynamicParameters> dynParameters, CommandType enuTipoComando = CommandType.StoredProcedure)
         {
             if (_blnConectado)
             {
-                _clsSqlCommand = new SqlCommand(strNombreProcedimiento, _clsSqlConnection)
-                {
-                    CommandTimeout = 0,
-                    CommandType = enuTipoComando
-                };
-
-                List<SqlParameter> lstParametros = new List<SqlParameter>();
-                tplParametros.ForEach(delegate (Tuple<string, object, int> parametro)
-                {
-                    SqlParameter sqlparameter = new SqlParameter(parametro.Item1, parametro.Item2)
-                    {
-                        SqlDbType = (SqlDbType)parametro.Item3
-                    };
-                    lstParametros.Add(sqlparameter);
-                });
-
-                _clsSqlCommand.Parameters.AddRange(lstParametros.ToArray());
-
+                _nombreProcedimiento = nombreProcedimiento;
+                _dynParameters = dynParameters;
+                _commandType = enuTipoComando;
                 _blnPreparado = true;
             }
             else
@@ -81,13 +73,12 @@ namespace CORE.Connection.Connections
             }
         }
 
-        public int EjecutarProcedimiento()
+        public long ExecuteDapper()
         {
             if (_blnPreparado)
             {
                 _blnPreparado = false;
-                return _clsSqlCommand.ExecuteNonQuery();
-
+                return _clsSqlConnection.Execute(_nombreProcedimiento, _dynParameters,null, _timeOut, _commandType);
             }
             else
             {
@@ -96,12 +87,25 @@ namespace CORE.Connection.Connections
             }
         }
 
-        public object EjecutarScalar()
+        public T QueryFirstOrDefaultDapper()
         {
             if (_blnPreparado)
             {
                 _blnPreparado = false;
-                return _clsSqlCommand.ExecuteScalar();
+                return _clsSqlConnection.QueryFirstOrDefault<T>(_nombreProcedimiento, _dynParameters, null, _timeOut, _commandType);
+            }
+            else
+            {
+                _blnPreparado = false;
+                throw new Exception("Procedimiento no preparado");
+            }
+        }
+        public IEnumerable<T> Query()
+        {
+            if (_blnPreparado)
+            {
+                _blnPreparado = false;
+                return _clsSqlConnection.Query<T>(_nombreProcedimiento, _dynParameters, null,true, _timeOut, _commandType);
             }
             else
             {
@@ -110,39 +114,6 @@ namespace CORE.Connection.Connections
             }
         }
 
-        public DataTableReader EjecutarTableReader()
-        {
-            if (_blnPreparado)
-            {
-                _blnPreparado = false;
-                DataTable clsDataTable = new DataTable();
-                SqlDataAdapter clsDataAdapter = new SqlDataAdapter(_clsSqlCommand);
-                clsDataAdapter.Fill(clsDataTable);
-                return clsDataTable.CreateDataReader();
-            }
-            else
-            {
-                _blnPreparado = false;
-                throw new Exception("Procedimiento no preparado");
-            }
-        }
-
-        public DataTable EjecutarTable()
-        {
-            if (_blnPreparado)
-            {
-                _blnPreparado = false;
-                DataTable clsDataTable = new DataTable();
-                SqlDataAdapter clsDataAdapter = new SqlDataAdapter(_clsSqlCommand);
-                clsDataAdapter.Fill(clsDataTable);
-                return clsDataTable.Copy();
-            }
-            else
-            {
-                _blnPreparado = false;
-                throw new Exception("Procedimiento no preparado");
-            }
-        }
         #endregion
 
 
@@ -154,7 +125,7 @@ namespace CORE.Connection.Connections
             {
                 Desconectar();
                 _clsSqlConnection.Dispose();
-                if (_clsSqlCommand != null) _clsSqlCommand.Dispose();
+                _dynParameters = null;
                 _blnPreparado = false;
             }
             catch { }

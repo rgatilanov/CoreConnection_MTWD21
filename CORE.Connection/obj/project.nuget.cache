@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "LlwR99ropag8eQdaxmDojSp9lb8rCykfxfRorSb35dAE5XsGUR4qYj9Krnu2Cl+IoxbSecVtU29TkVECpzIpjA==",
+  "dgSpecHash": "NDx4yYMWorJfKTSMg2HczhMyZhzbvOKgyF6cTU2hBn5ttl09fhh93S8fjH+XNVC6dFjOZcI9WVJfkeOASUE5Bg==",
   "success": true,
   "projectFilePath": "G:\\EjerciciosMTWDM2020\\CORE.ConnectionGit\\CORE.Connection\\CORE.Connection.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ProBook 450 HP\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
+    "C:\\Users\\ProBook 450 HP\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
     "C:\\Users\\ProBook 450 HP\\.nuget\\packages\\google.protobuf\\3.14.0\\google.protobuf.3.14.0.nupkg.sha512",
     "C:\\Users\\ProBook 450 HP\\.nuget\\packages\\k4os.compression.lz4\\1.1.11\\k4os.compression.lz4.1.1.11.nupkg.sha512",
     "C:\\Users\\ProBook 450 HP\\.nuget\\packages\\k4os.compression.lz4.streams\\1.1.11\\k4os.compression.lz4.streams.1.1.11.nupkg.sha512",

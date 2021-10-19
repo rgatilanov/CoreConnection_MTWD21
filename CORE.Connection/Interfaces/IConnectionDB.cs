@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -9,10 +10,9 @@ namespace CORE.Connection.Interfaces
 {
     public interface IConnectionDB<T> : IDisposable
     {
-        void PrepararProcedimiento(string strNombreProcedimiento, List<Tuple<string, object, int>> tplParametros, CommandType enuTipoComando = CommandType.StoredProcedure);
-        int EjecutarProcedimiento();
-        object EjecutarScalar();
-        DataTableReader EjecutarTableReader();
-        DataTable EjecutarTable();
+        void PrepararProcedimiento(string nombreProcedimiento, List<DynamicParameters> dynParameters, CommandType enuTipoComando = CommandType.StoredProcedure);
+        long ExecuteDapper();
+        T QueryFirstOrDefaultDapper();
+        IEnumerable<T> Query();
     }
 }

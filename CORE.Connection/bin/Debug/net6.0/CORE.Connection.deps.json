@@ -6,8 +6,9 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "CORE.Connection/1.0.0": {
+      "CORE.Connection/1.0.0.2": {
         "dependencies": {
+          "Dapper": "2.0.90",
           "MySql.Data": "8.0.25",
           "System.Data.SqlClient": "4.8.2"
         },
@@ -20,6 +21,14 @@
           "lib/netstandard2.0/BouncyCastle.Crypto.dll": {
             "assemblyVersion": "1.8.5.0",
             "fileVersion": "1.8.19031.1"
+          }
+        }
+      },
+      "Dapper/2.0.90": {
+        "runtime": {
+          "lib/net5.0/Dapper.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.90.36046"
           }
         }
       },
@@ -285,7 +294,7 @@
     }
   },
   "libraries": {
-    "CORE.Connection/1.0.0": {
+    "CORE.Connection/1.0.0.2": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -296,6 +305,13 @@
       "sha512": "sha512-6uxsQw2UXrt82VQAWC2td3oBSJjUZ3P4u4DliagB8wf67KsU53V8sW9xwdF+IwZOOZFR0TCZuv/YKZ2BlrfAag==",
       "path": "bouncycastle.netcore/1.8.5",
       "hashPath": "bouncycastle.netcore.1.8.5.nupkg.sha512"
+    },
+    "Dapper/2.0.90": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-e4YjOLJptnpwHIbP8HxjaYf7So9lhUC43rvvGMEkH4Q4CiVlm4rOxYDo0HyuHlMQKj0U5Ob/nCMm52TUhTaZQg==",
+      "path": "dapper/2.0.90",
+      "hashPath": "dapper.2.0.90.nupkg.sha512"
     },
     "Google.Protobuf/3.14.0": {
       "type": "package",

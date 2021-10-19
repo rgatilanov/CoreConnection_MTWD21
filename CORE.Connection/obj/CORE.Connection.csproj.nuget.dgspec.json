@@ -5,7 +5,7 @@
   },
   "projects": {
     "G:\\EjerciciosMTWDM2020\\CORE.ConnectionGit\\CORE.Connection\\CORE.Connection.csproj": {
-      "version": "1.0.0",
+      "version": "1.0.0.2",
       "restore": {
         "projectUniqueName": "G:\\EjerciciosMTWDM2020\\CORE.ConnectionGit\\CORE.Connection\\CORE.Connection.csproj",
         "projectName": "CORE.Connection",
@@ -47,6 +47,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.90, )"
+            },
             "MySql.Data": {
               "target": "Package",
               "version": "[8.0.25, )"

@@ -1,8 +1,10 @@
 ﻿using CORE.Connection.Interfaces;
+using Dapper;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,11 +14,16 @@ namespace CORE.Connection.Connections
     internal class MySql<T>: IConnectionDB<T>
     {
         #region Constructor estático y variables globales
-        private MySqlConnection _clsSqlConnection = null;
-        private MySqlCommand _clsSqlCommand = null;
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private MySqlConnection _clsMySqlConnection = null;
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+
         bool _blnConectado = false;
         bool _blnPreparado = false;
-
+        string _nombreProcedimiento = string.Empty;
+        List<DynamicParameters> _dynParameters;
+        CommandType _commandType;
+        int _timeOut = 12000;
 
         private MySql()
         {
@@ -28,13 +35,17 @@ namespace CORE.Connection.Connections
         {
             MySql<T> modSql = new MySql<T>()
             {
-                _clsSqlConnection = new MySqlConnection(strConnectionString)
+                _clsMySqlConnection = new MySqlConnection(strConnectionString)
             };
 
             try
             {
-                modSql._clsSqlConnection.Open();
+                modSql._clsMySqlConnection.Open();
                 modSql._blnConectado = true;
+            }
+            catch (MySqlException sqlEx)
+            {
+                throw sqlEx;
             }
             catch (Exception ex)
             {
@@ -47,26 +58,13 @@ namespace CORE.Connection.Connections
 
         #region Métodos públicos
 
-        public void PrepararProcedimiento(string strNombreProcedimiento, List<Tuple<string, object, int>> tplParametros, CommandType enuTipoComando = CommandType.StoredProcedure)
+        public void PrepararProcedimiento(string nombreProcedimiento, List<DynamicParameters> dynParameters, CommandType enuTipoComando = CommandType.StoredProcedure)
         {
             if (_blnConectado)
             {
-                _clsSqlCommand = new MySqlCommand(strNombreProcedimiento, _clsSqlConnection)
-                {
-                    CommandTimeout = 0,
-                    CommandType = enuTipoComando
-                };
-
-                List<MySqlParameter> lstParametros = new List<MySqlParameter>();
-                tplParametros.ForEach(delegate (Tuple<string, object, int> parametro)
-                {
-                    MySqlParameter sqlparameter = new MySqlParameter(parametro.Item1, parametro.Item2);
-                    sqlparameter.MySqlDbType = (MySqlDbType)parametro.Item3;
-                    lstParametros.Add(sqlparameter);
-                });
-
-                _clsSqlCommand.Parameters.AddRange(lstParametros.ToArray());
-
+                _nombreProcedimiento = nombreProcedimiento;
+                _dynParameters = dynParameters;
+                _commandType = enuTipoComando;
                 _blnPreparado = true;
             }
             else
@@ -75,13 +73,12 @@ namespace CORE.Connection.Connections
             }
         }
 
-        public int EjecutarProcedimiento()
+        public long ExecuteDapper()
         {
             if (_blnPreparado)
             {
                 _blnPreparado = false;
-                return _clsSqlCommand.ExecuteNonQuery();
-
+                return _clsMySqlConnection.Execute(_nombreProcedimiento, _dynParameters, null, _timeOut, _commandType);
             }
             else
             {
@@ -90,12 +87,25 @@ namespace CORE.Connection.Connections
             }
         }
 
-        public object EjecutarScalar()
+        public T QueryFirstOrDefaultDapper()
         {
             if (_blnPreparado)
             {
                 _blnPreparado = false;
-                return _clsSqlCommand.ExecuteScalar();
+                return _clsMySqlConnection.QueryFirstOrDefault<T>(_nombreProcedimiento, _dynParameters, null, _timeOut, _commandType);
+            }
+            else
+            {
+                _blnPreparado = false;
+                throw new Exception("Procedimiento no preparado");
+            }
+        }
+        public IEnumerable<T> Query()
+        {
+            if (_blnPreparado)
+            {
+                _blnPreparado = false;
+                return _clsMySqlConnection.Query<T>(_nombreProcedimiento, _dynParameters, null, true, _timeOut, _commandType);
             }
             else
             {
@@ -104,39 +114,6 @@ namespace CORE.Connection.Connections
             }
         }
 
-        public DataTableReader EjecutarTableReader()
-        {
-            if (_blnPreparado)
-            {
-                _blnPreparado = false;
-                DataTable clsDataTable = new DataTable();
-                MySqlDataAdapter clsDataAdapter = new MySqlDataAdapter(_clsSqlCommand);
-                clsDataAdapter.Fill(clsDataTable);
-                return clsDataTable.CreateDataReader();
-            }
-            else
-            {
-                _blnPreparado = false;
-                throw new Exception("Procedimiento no preparado");
-            }
-        }
-
-        public DataTable EjecutarTable()
-        {
-            if (_blnPreparado)
-            {
-                _blnPreparado = false;
-                DataTable clsDataTable = new DataTable();
-                MySqlDataAdapter clsDataAdapter = new MySqlDataAdapter(_clsSqlCommand);
-                clsDataAdapter.Fill(clsDataTable);
-                return clsDataTable.Copy();
-            }
-            else
-            {
-                _blnPreparado = false;
-                throw new Exception("Procedimiento no preparado");
-            }
-        }
         #endregion
 
 
@@ -147,19 +124,20 @@ namespace CORE.Connection.Connections
             try
             {
                 Desconectar();
-                _clsSqlConnection.Dispose();
-                if (_clsSqlCommand != null) _clsSqlCommand.Dispose();
+                _clsMySqlConnection.Dispose();
+                _dynParameters = null;
                 _blnPreparado = false;
             }
             catch { }
         }
         public void Desconectar()
         {
-            _clsSqlConnection.Close();
+            _clsMySqlConnection.Close();
         }
 
 
 
         #endregion
+
     }
 }

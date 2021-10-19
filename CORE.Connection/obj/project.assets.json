@@ -11,6 +11,15 @@
           "lib/netstandard2.0/BouncyCastle.Crypto.dll": {}
         }
       },
+      "Dapper/2.0.90": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/Dapper.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Dapper.dll": {}
+        }
+      },
       "Google.Protobuf/3.14.0": {
         "type": "package",
         "dependencies": {
@@ -384,6 +393,24 @@
         "lib/netstandard2.0/BouncyCastle.Crypto.xml",
         "lib/xamarinios/BouncyCastle.Crypto.dll",
         "lib/xamarinios/BouncyCastle.Crypto.xml"
+      ]
+    },
+    "Dapper/2.0.90": {
+      "sha512": "e4YjOLJptnpwHIbP8HxjaYf7So9lhUC43rvvGMEkH4Q4CiVlm4rOxYDo0HyuHlMQKj0U5Ob/nCMm52TUhTaZQg==",
+      "type": "package",
+      "path": "dapper/2.0.90",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Dapper.png",
+        "dapper.2.0.90.nupkg.sha512",
+        "dapper.nuspec",
+        "lib/net461/Dapper.dll",
+        "lib/net461/Dapper.xml",
+        "lib/net5.0/Dapper.dll",
+        "lib/net5.0/Dapper.xml",
+        "lib/netstandard2.0/Dapper.dll",
+        "lib/netstandard2.0/Dapper.xml"
       ]
     },
     "Google.Protobuf/3.14.0": {
@@ -1110,6 +1137,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Dapper >= 2.0.90",
       "MySql.Data >= 8.0.25",
       "System.Data.SqlClient >= 4.8.2"
     ]
@@ -1120,7 +1148,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
-    "version": "1.0.0",
+    "version": "1.0.0.2",
     "restore": {
       "projectUniqueName": "G:\\EjerciciosMTWDM2020\\CORE.ConnectionGit\\CORE.Connection\\CORE.Connection.csproj",
       "projectName": "CORE.Connection",
@@ -1162,6 +1190,10 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "Dapper": {
+            "target": "Package",
+            "version": "[2.0.90, )"
+          },
           "MySql.Data": {
             "target": "Package",
             "version": "[8.0.25, )"
