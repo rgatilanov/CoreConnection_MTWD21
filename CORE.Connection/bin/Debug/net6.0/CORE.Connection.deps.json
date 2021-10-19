@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "CORE.Connection/1.0.0.2": {
+      "CORE.Connection/1.0.4": {
         "dependencies": {
           "Dapper": "2.0.90",
           "MySql.Data": "8.0.25",
@@ -294,7 +294,7 @@
     }
   },
   "libraries": {
-    "CORE.Connection/1.0.0.2": {
+    "CORE.Connection/1.0.4": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

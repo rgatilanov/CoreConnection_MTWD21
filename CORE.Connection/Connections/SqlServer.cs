@@ -21,7 +21,7 @@ namespace CORE.Connection.Connections
         bool _blnConectado = false;
         bool _blnPreparado = false;
         string _nombreProcedimiento = string.Empty;
-        List<DynamicParameters> _dynParameters;
+        DynamicParameters _dynParameters;
         CommandType _commandType;
         int _timeOut = 12000;
 
@@ -58,7 +58,7 @@ namespace CORE.Connection.Connections
 
         #region Métodos públicos
 
-        public void PrepararProcedimiento(string nombreProcedimiento, List<DynamicParameters> dynParameters, CommandType enuTipoComando = CommandType.StoredProcedure)
+        public void PrepararProcedimiento(string nombreProcedimiento, DynamicParameters dynParameters, CommandType enuTipoComando = CommandType.StoredProcedure)
         {
             if (_blnConectado)
             {
@@ -93,6 +93,19 @@ namespace CORE.Connection.Connections
             {
                 _blnPreparado = false;
                 return _clsSqlConnection.QueryFirstOrDefault<T>(_nombreProcedimiento, _dynParameters, null, _timeOut, _commandType);
+            }
+            else
+            {
+                _blnPreparado = false;
+                throw new Exception("Procedimiento no preparado");
+            }
+        }
+        public object QueryFirstOrDefaultDapper(Models.TipoDato tipo)
+        {
+            if (_blnPreparado)
+            {
+                _blnPreparado = false;
+                return tipo == Models.TipoDato.Numerico ? _clsSqlConnection.QueryFirstOrDefault<long>(_nombreProcedimiento, _dynParameters, null, _timeOut, _commandType) : _clsSqlConnection.QueryFirstOrDefault<string>(_nombreProcedimiento, _dynParameters, null, _timeOut, _commandType);
             }
             else
             {

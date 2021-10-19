@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using CORE.Connection.Models;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,9 +11,10 @@ namespace CORE.Connection.Interfaces
 {
     public interface IConnectionDB<T> : IDisposable
     {
-        void PrepararProcedimiento(string nombreProcedimiento, List<DynamicParameters> dynParameters, CommandType enuTipoComando = CommandType.StoredProcedure);
+        void PrepararProcedimiento(string nombreProcedimiento, DynamicParameters dynParameters, CommandType enuTipoComando = CommandType.StoredProcedure);
         long ExecuteDapper();
         T QueryFirstOrDefaultDapper();
+        object QueryFirstOrDefaultDapper(TipoDato tipo);
         IEnumerable<T> Query();
     }
 }
