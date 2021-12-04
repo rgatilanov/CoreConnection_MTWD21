@@ -5,7 +5,7 @@
   },
   "projects": {
     "G:\\EjerciciosMTWDM2020\\CORE.ConnectionGit\\CORE.Connection\\CORE.Connection.csproj": {
-      "version": "1.0.4",
+      "version": "1.0.6",
       "restore": {
         "projectUniqueName": "G:\\EjerciciosMTWDM2020\\CORE.ConnectionGit\\CORE.Connection\\CORE.Connection.csproj",
         "projectName": "CORE.Connection",
@@ -55,6 +55,10 @@
               "target": "Package",
               "version": "[8.0.25, )"
             },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.8.2, )"
@@ -75,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-rc.2.21505.57\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

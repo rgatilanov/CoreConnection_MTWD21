@@ -9,6 +9,7 @@ namespace CORE.Connection.Models
     public enum DbEnum
     {
         Sql,
-        MySql
+        MySql,
+        PostgreSQL,
     }
 }

@@ -17,6 +17,7 @@ namespace CORE.Connection
             {
                 DbEnum.Sql => SqlServer<T>.Conectar(ConnectionString),
                 DbEnum.MySql => MySql<T>.Conectar(ConnectionString),
+                DbEnum.PostgreSQL => PostgreSQL<T>.Conectar(ConnectionString),
                 _ => SqlServer<T>.Conectar(ConnectionString),
             };
         }

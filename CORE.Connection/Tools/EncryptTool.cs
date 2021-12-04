@@ -32,7 +32,7 @@ namespace CORE.Connection.Tools
         }
         internal static string Decrypt(string cipherText)
         {
-            string EncryptionKey = Environment.GetEnvironmentVariable("PrivateKeyMTWDM", EnvironmentVariableTarget.User);
+            string EncryptionKey = "MtWDMC0v1d2021";
             byte[] cipherBytes = Convert.FromBase64String(cipherText);
             using (Aes encryptor = Aes.Create())
             {
